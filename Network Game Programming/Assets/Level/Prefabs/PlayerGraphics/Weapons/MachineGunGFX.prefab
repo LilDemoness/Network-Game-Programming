@@ -119,6 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8330398972626283626}
+  - component: {fileID: 1954035348494408977}
   m_Layer: 0
   m_Name: MachineGunGFX
   m_TagString: Untagged
@@ -142,3 +143,16 @@ Transform:
   - {fileID: 5223160151108771762}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1954035348494408977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731729149792807350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd0161bee9e1094da8989df6bd2fe49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssociatedValue: {fileID: 11400000, guid: 19fcffcb66d8abf4cbae0a4105ce50e3, type: 2}
