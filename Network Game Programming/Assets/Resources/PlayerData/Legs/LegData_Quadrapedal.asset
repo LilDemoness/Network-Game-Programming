@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bf50940c0e5a1438d319827b6bce3c, type: 3}
   m_Name: LegData_Quadrapedal
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Quadrapedal

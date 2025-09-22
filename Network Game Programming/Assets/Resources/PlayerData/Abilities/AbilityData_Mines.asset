@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ec89d1865dfa348bd6d5f89b326ec8, type: 3}
   m_Name: AbilityData_Mines
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Mines
