@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,6 +10,7 @@ namespace Labs.Characters
         [Header("References")]
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _playerSprite;
+        [SerializeField] private TMP_Text _scoreText;
 
         // Temp.
         private Vector2 _movementInput;
@@ -16,6 +19,16 @@ namespace Labs.Characters
         // Animation Hashes.
         private readonly int IS_JUMPING_HASH = Animator.StringToHash("IsJumping");
         private readonly int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
+
+
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+
+            GetComponent<ServerCharacter>().CurrentScore.OnValueChanged += UpdateScoreUI;
+        }
+
+        private void UpdateScoreUI(int previousValue, int newValue) => _scoreText.text = $"Current Score: {newValue}";
 
 
         [ClientRpc]

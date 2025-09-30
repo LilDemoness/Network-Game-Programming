@@ -14,8 +14,6 @@ namespace Labs
 
         [SerializeField] private float _speed = 5.0f;
         [SerializeField] private LayerMask _groundLayers;
-        private int _currentScore;
-
         
 
 
@@ -25,9 +23,10 @@ namespace Labs
             base.OnNetworkSpawn();
 
             if (!IsServer)
+            {
                 this.enabled = false;
-
-            _currentScore = 0;
+                return;
+            }
         }
 
         private void FixedUpdate()
@@ -46,31 +45,5 @@ namespace Labs
                 _serverCharacter.ClientCharacter.SetClientTouchedGroundClientRpc();
             }
         }
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (NetworkManager.Singleton.LocalClientId == this.OwnerClientId)
-            {
-                IncrementScoreServerRpc(this.OwnerClientId);
-            }
-        }
-        [ServerRpc(RequireOwnership = false)]
-        private void IncrementScoreServerRpc(ulong clientID)
-        {
-            // Request all players to update their scores.
-            IncrementScoreClientRpc(clientID);
-        }
-        [ClientRpc]
-        private void IncrementScoreClientRpc(ulong targetClientID)
-        {
-            // If we are the owner of this object, increment our score.
-            if (targetClientID == this.OwnerClientId)
-            {
-                NetworkManager.Singleton.ConnectedClients[this.OwnerClientId].PlayerObject.GetComponent<ServerCharacterMovement>().IncrementScore();
-            }
-
-            Debug.Log($"Score of Player '{targetClientID}' is {NetworkManager.Singleton.ConnectedClients[this.OwnerClientId].PlayerObject.GetComponent<ServerCharacterMovement>().GetScore()}");
-        }
-        public void IncrementScore() => ++_currentScore;
-        public int GetScore() => _currentScore;
     }
 }
