@@ -1,23 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using Labs.Characters;
 
-namespace Labs
+namespace Labs.UserInput
 {
-    public class PlayerInput : NetworkBehaviour
+    public class ClientUserInput : NetworkBehaviour
     {
-        #region Continuous Input
+        private Vector2 _previousMovementInput;
+        private bool _hasMovementInputChanged;
 
-        public Vector2 MovementInput { get; private set; }
-        public Vector2 NormalizedMovementInput { get; private set; }
 
-        #endregion
-
-        #region Input Events
-
-        public System.Action OnJumpPerformed;
-
-        #endregion
+        [SerializeField] private ServerCharacter _serverCharacter;
 
 
         private PlayerInputActions _inputActions;
@@ -41,8 +35,20 @@ namespace Labs
 
         private void Update()
         {
-            MovementInput = _inputActions.General.Movement.ReadValue<Vector2>();
-            NormalizedMovementInput = MovementInput.normalized;
+            Vector2 newMovementInput = _inputActions.General.Movement.ReadValue<Vector2>();
+            if (newMovementInput != _previousMovementInput)
+            {
+                _hasMovementInputChanged = true;
+                _previousMovementInput = newMovementInput;
+            }
+        }
+        private void FixedUpdate()
+        {
+            if (_hasMovementInputChanged)
+            {
+                _hasMovementInputChanged = false;
+                _serverCharacter.SetCharacterMovementServerRpc(_previousMovementInput);
+            }
         }
 
 
@@ -69,10 +75,6 @@ namespace Labs
         }
 
 
-        #region Input Event Functions
-
-        private void Jump_performed(InputAction.CallbackContext obj) => OnJumpPerformed?.Invoke();
-
-        #endregion
+        private void Jump_performed(InputAction.CallbackContext ctx) { }
     }
 }

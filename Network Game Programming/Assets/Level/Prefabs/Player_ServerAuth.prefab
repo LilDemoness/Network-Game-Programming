@@ -122,10 +122,12 @@ GameObject:
   - component: {fileID: 4612403263484773747}
   - component: {fileID: 2999359961346919255}
   - component: {fileID: 7682458820336961535}
-  - component: {fileID: 9088631835148917146}
   - component: {fileID: 53820928416103826}
   - component: {fileID: 3714762833124970818}
+  - component: {fileID: 2253946001244284767}
+  - component: {fileID: 5089788849245900469}
   - component: {fileID: 2898714525565011334}
+  - component: {fileID: 1457887723357082226}
   m_Layer: 3
   m_Name: Player_ServerAuth
   m_TagString: Untagged
@@ -237,21 +239,6 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
---- !u!114 &9088631835148917146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4078908926543052632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70afd2761df7904d87cbe91351d99ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 5442489966975274883}
 --- !u!50 &53820928416103826
 Rigidbody2D:
   serializedVersion: 5
@@ -325,6 +312,36 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
+--- !u!114 &2253946001244284767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078908926543052632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da20e4860bd2054ea357682f8f3b31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _clientCharacter: {fileID: 5089788849245900469}
+  _movement: {fileID: 2898714525565011334}
+--- !u!114 &5089788849245900469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078908926543052632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd333034ed33ed14492e9995122e834f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _animator: {fileID: 5442489966975274883}
+  _playerSprite: {fileID: 4922498940050351264}
 --- !u!114 &2898714525565011334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,10 +355,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _serverCharacter: {fileID: 2253946001244284767}
   _speed: 5
   _groundLayers:
     serializedVersion: 2
     m_Bits: 64
-  _playerInput: {fileID: 0}
-  _movementAnimator: {fileID: 5442489966975274883}
-  _playerSprite: {fileID: 4922498940050351264}
+--- !u!114 &1457887723357082226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078908926543052632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00080bad01e8ca408969ff8d1e0c50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _serverCharacter: {fileID: 2253946001244284767}
