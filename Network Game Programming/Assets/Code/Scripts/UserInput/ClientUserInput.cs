@@ -59,6 +59,7 @@ namespace Labs.UserInput
 
             // Subscribe to Input Events.
             _inputActions.General.Jump.performed += Jump_performed;
+            _inputActions.General.Shoot.performed += Shoot_performed;
 
 
             // Enable the Input Actions Map.
@@ -68,6 +69,7 @@ namespace Labs.UserInput
         {
             // Unsubscribe from Input Events.
             _inputActions.General.Jump.performed -= Jump_performed;
+            _inputActions.General.Shoot.performed -= Shoot_performed;
 
 
             // Dispose of the Input Acitons Map.
@@ -76,5 +78,6 @@ namespace Labs.UserInput
 
 
         private void Jump_performed(InputAction.CallbackContext ctx) { }
+        private void Shoot_performed(InputAction.CallbackContext ctx) => _serverCharacter.FireProjectileServerRpc(transform.position);
     }
 }

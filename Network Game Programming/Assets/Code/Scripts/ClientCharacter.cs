@@ -51,7 +51,9 @@ namespace Labs.Characters
                     _animator.SetBool(IS_JUMPING_HASH, true);
                 }
                 _animator.SetBool(IS_MOVING_HASH, _movementInput.x != 0.0f);
-                _playerSprite.flipX = _movementInput.x < 0.0f;
+
+                if (_movementInput.x != 0.0f)
+                    _playerSprite.flipX = _movementInput.x < 0.0f;
             }
             else
             {

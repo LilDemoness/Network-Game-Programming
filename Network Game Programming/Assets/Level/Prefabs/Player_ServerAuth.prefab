@@ -504,8 +504,10 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _clientCharacter: {fileID: 5089788849245900469}
   _movement: {fileID: 2898714525565011334}
+  _playerGFX: {fileID: 4922498940050351264}
   CurrentScore:
     m_InternalValue: 0
+  _projectilePrefab: {fileID: 8147389680361755447, guid: 0d8190f052138cf48a671cd270e102c0, type: 3}
 --- !u!114 &5089788849245900469
 MonoBehaviour:
   m_ObjectHideFlags: 0

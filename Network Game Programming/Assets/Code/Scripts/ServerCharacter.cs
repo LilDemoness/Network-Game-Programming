@@ -12,8 +12,15 @@ namespace Labs.Characters
         [SerializeField] private ServerCharacterMovement _movement; 
         public ServerCharacterMovement Movement => _movement;
 
+        [SerializeField] private SpriteRenderer _playerGFX;
 
+
+        [Header("Scoring")]
         public NetworkVariable<int> CurrentScore;
+
+
+        [Header("Shooting")]
+        [SerializeField] private GameObject _projectilePrefab;
 
 
         public override void OnNetworkSpawn()
@@ -35,6 +42,16 @@ namespace Labs.Characters
         {
             _movement.SetMovementInput(movementInput);
             _clientCharacter.SetMovementInputClientRpc(movementInput);
+        }
+        [ServerRpc]
+        public void FireProjectileServerRpc(Vector2 origin, ServerRpcParams serverRpcParams = default)
+        {
+            GameObject projectileInstance = Instantiate<GameObject>(
+                _projectilePrefab,
+                origin,
+                Quaternion.LookRotation(Vector3.forward, (_playerGFX.flipX ? -transform.right : transform.right)));
+            projectileInstance.GetComponent<NetworkObject>().Spawn(true);
+            projectileInstance.GetComponent<Projectile>().Initialise();
         }
 
 
